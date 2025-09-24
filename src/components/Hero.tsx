@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white dark:border-gray-700 shadow-2xl transform hover:scale-105 transition-transform duration-300">
                 <img
-                  src={"src/assets/profile_pic.jpeg"}
+                  src={"public/profile_pic.jpeg"}
                   alt="Yassine Elhari - Professional Profile"
                   className="w-full h-full object-cover"
                 />
