@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin, ChevronDown } from 'lucide-react';
+import profilePic from '../assets/profile_pic.jpeg';
 
 const Hero: React.FC = () => {
   const scrollToAbout = () => {
@@ -68,7 +69,7 @@ const Hero: React.FC = () => {
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white dark:border-gray-700 shadow-2xl transform hover:scale-105 transition-transform duration-300">
                 <img
-                  src={"public/profile_pic.jpeg"}
+                  src={profilePic}
                   alt="Yassine Elhari - Professional Profile"
                   className="w-full h-full object-cover"
                 />
