@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
           {/* Left Content */}
           <div className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
             <div className="animate-fade-in-up">
-              <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+              <h1 className="sm:text-2xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
                 <span className="text-blue-600 dark:text-blue-400">Yassine</span>
                 <br />
                 <span className="text-gray-700 dark:text-gray-300">Elhari</span>
