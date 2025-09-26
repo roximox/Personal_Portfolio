@@ -188,17 +188,17 @@ const ProjectsStack: React.FC = () => {
       onTouchEnd={onTouchEnd}
     >
       {/* Header */}
-      <div className="relative z-20 pt-16 md:pt-20 pb-4 md:pb-8 text-center px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6">
+      <div className="relative z-20 pt-12 sm:pt-16 md:pt-20 pb-4 md:pb-8 text-center px-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 md:mb-6">
           Featured <span className="text-blue-600 dark:text-blue-400">Projects</span>
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
           A showcase of my professional work, personal projects, and academic achievements
         </p>
       </div>
 
       {/* Projects Stack Container */}
-      <div className="relative h-[70vh] md:h-[80vh] perspective-1000">
+      <div className="relative h-[65vh] sm:h-[70vh] md:h-[80vh] perspective-1000">
         {projects.map((project, index) => {
           const offset = index - currentProject;
           const isVisible = Math.abs(offset) <= 2;
@@ -208,27 +208,27 @@ const ProjectsStack: React.FC = () => {
           return (
             <div
               key={index}
-              className={`absolute inset-0 mx-4 md:mx-6 lg:mx-12 transition-all duration-1000 ease-in-out ${
+              className={`absolute inset-0 mx-3 sm:mx-4 md:mx-6 lg:mx-12 transition-all duration-1000 ease-in-out ${
                 isTransitioning ? 'duration-800' : ''
               }`}
               style={{
                 transform: `
-                  translateY(${offset * 20}px)
-                  translateZ(${-Math.abs(offset) * 100}px)
-                  scale(${1 - Math.abs(offset) * 0.05})
-                  rotateX(${offset * 2}deg)
+                  translateY(${offset * (window.innerWidth < 640 ? 15 : 20)}px)
+                  translateZ(${-Math.abs(offset) * (window.innerWidth < 640 ? 80 : 100)}px)
+                  scale(${1 - Math.abs(offset) * (window.innerWidth < 640 ? 0.03 : 0.05)})
+                  rotateX(${offset * (window.innerWidth < 640 ? 1 : 2)}deg)
                 `,
                 zIndex: 10 - Math.abs(offset),
-                opacity: offset === 0 ? 1 : Math.max(0.3, 1 - Math.abs(offset) * 0.3),
+                opacity: offset === 0 ? 1 : Math.max(0.4, 1 - Math.abs(offset) * 0.25),
               }}
             >
               {/* Project Card */}
-              <div className={`h-full bg-white dark:bg-gray-800 rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border dark:border-gray-700 ${
-                offset === 0 ? 'ring-2 ring-blue-500/20' : ''
+              <div className={`h-full bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 ${
+                offset === 0 ? 'ring-1 ring-blue-500/30 shadow-blue-500/10' : ''
               }`}>
                 <div className="h-full flex flex-col md:flex-row">
                   {/* Image Section */}
-                  <div className="md:w-1/2 relative overflow-hidden h-48 md:h-auto">
+                  <div className="md:w-1/2 relative overflow-hidden h-40 sm:h-48 md:h-auto">
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`}></div>
                     <img
                       src={project.image}
@@ -237,64 +237,69 @@ const ProjectsStack: React.FC = () => {
                     />
 
                     {/* Floating Icon */}
-                    <div className="absolute top-4 left-4 md:top-8 md:left-8 p-2 md:p-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-xl md:rounded-2xl text-blue-600 dark:text-blue-400">
-                      <div className="w-6 h-6 md:w-12 md:h-12">
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-8 md:left-8 p-1.5 sm:p-2 md:p-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl text-blue-600 dark:text-blue-400">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-12 md:h-12">
                         {React.cloneElement(project.icon, { className: "w-full h-full" })}
                       </div>
                     </div>
 
                     {/* Status Badge */}
-                    <div className="absolute top-4 right-4 md:top-8 md:right-8">
-                      <span className={`px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm border ${getStatusColor(project.status)}`}>
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-8 md:right-8">
+                      <span className={`px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm border ${getStatusColor(project.status)}`}>
                         {project.status}
                       </span>
                     </div>
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent md:bg-gradient-to-r"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent md:bg-gradient-to-r"></div>
                   </div>
 
                   {/* Content Section */}
-                  <div className="md:w-1/2 p-4 md:p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="space-y-4 md:space-y-6">
+                  <div className="md:w-1/2 p-3 sm:p-4 md:p-8 lg:p-12 flex flex-col justify-center">
+                    <div className="space-y-3 sm:space-y-4 md:space-y-6">
                       <div>
-                        <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">
+                        <h3 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 md:mb-3 leading-tight">
                           {project.title}
                         </h3>
-                        <p className="text-sm md:text-lg text-blue-600 dark:text-blue-400 font-semibold">
+                        <p className="text-xs sm:text-sm md:text-lg text-blue-600 dark:text-blue-400 font-semibold">
                           {project.category}
                         </p>
                       </div>
 
-                      <p className="text-gray-600 dark:text-gray-400 text-sm md:text-lg leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm md:text-lg leading-relaxed line-clamp-3 sm:line-clamp-none">
                         {project.description}
                       </p>
 
                       {/* Technologies */}
                       <div>
-                        <h4 className="text-gray-900 dark:text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">Technologies</h4>
-                        <div className="flex flex-wrap gap-2 md:gap-3">
-                          {project.technologies.map((tech, techIndex) => (
+                        <h4 className="text-gray-900 dark:text-white font-semibold mb-2 sm:mb-3 md:mb-4 text-xs sm:text-sm md:text-base">Technologies</h4>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3">
+                          {project.technologies.slice(0, window.innerWidth < 640 ? 3 : project.technologies.length).map((tech, techIndex) => (
                             <span
                               key={techIndex}
-                              className="px-2 py-1 md:px-4 md:py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg md:rounded-xl text-xs md:text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                              className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md sm:rounded-lg md:rounded-xl text-xs md:text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
                             >
                               {tech}
                             </span>
                           ))}
+                          {window.innerWidth < 640 && project.technologies.length > 3 && (
+                            <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-md text-xs font-medium">
+                              +{project.technologies.length - 3}
+                            </span>
+                          )}
                         </div>
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
-                        <button className={`flex items-center justify-center space-x-2 md:space-x-3 bg-gradient-to-r ${project.gradient} text-white px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm md:text-base`}>
-                          <ExternalLink className="w-4 h-4 md:w-5 md:h-5" />
+                      <div className="flex flex-col xxs:flex-row gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-2 md:pt-4">
+                        <button className={`flex items-center justify-center space-x-1.5 sm:space-x-2 md:space-x-3 bg-gradient-to-r ${project.gradient} text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-lg md:rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs sm:text-sm md:text-base`}>
+                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                           <span>View Project</span>
                         </button>
 
                         {project.status !== 'Professional' && (
-                          <button className="flex items-center justify-center space-x-2 md:space-x-3 bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm md:text-base">
-                            <Github className="w-4 h-4 md:w-5 md:h-5" />
+                          <button className="flex items-center justify-center space-x-1.5 sm:space-x-2 md:space-x-3 bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-lg md:rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs sm:text-sm md:text-base">
+                            <Github className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                             <span>View Code</span>
                           </button>
                         )}

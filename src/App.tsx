@@ -11,11 +11,9 @@ import Languages from './components/Languages';
 import Interests from './components/Interests';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import IntroSequence from './components/IntroSequence';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [showIntroSequence, setShowIntroSequence] = useState(true);
 
   useEffect(() => {
     if (darkMode) {
@@ -29,24 +27,14 @@ function App() {
     setDarkMode(!darkMode);
   };
 
-  const handleIntroComplete = () => {
-    setShowIntroSequence(false);
-  };
-
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      {/* Intro Sequence */}
-      {showIntroSequence && (
-        <IntroSequence onComplete={handleIntroComplete} />
-      )}
-
-
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      
+
       {/* Dark Mode Toggle Button */}
       <button
         onClick={toggleDarkMode}
-        className="fixed top-4 right-4 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border dark:border-gray-700"
+        className="fixed top-4 right-4 z-50 p-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:scale-110"
         aria-label="Toggle dark mode"
       >
         {darkMode ? (
@@ -67,7 +55,7 @@ function App() {
         <Interests />
         <Contact />
       </main>
-      
+
       <Footer />
     </div>
   );
