@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
 
   const downloadCV = () => {
     const link = document.createElement('a');
-    link.href = 'public/Yassine_Elhari_CV (3).pdf (1).pdf';
+    link.href = '/Yassine_Elhari_CV (3).pdf (1).pdf';
     link.download = 'Yassine_Elhari_CV.pdf';
     document.body.appendChild(link);
     link.click();
