@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
   const downloadCV = () => {
     // In a real implementation, this would download the actual CV
     const link = document.createElement('a');
-    link.href = '/public/Yassine Elhari[1][1].pdf GVF.pdf';
+    link.href = '/Yassine_Elhari_CV (3).pdf (1).pdf';
     link.download = 'Yassine_Elhari_CV.pdf';
     document.body.appendChild(link);
     link.click();
